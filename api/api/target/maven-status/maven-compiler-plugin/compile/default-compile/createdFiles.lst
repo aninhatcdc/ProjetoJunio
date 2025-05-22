@@ -1,0 +1,12 @@
+med\voll\api\controller\PessoaController.class
+med\voll\api\repository\PessoaRepository.class
+med\voll\api\pessoa\Entity.class
+med\voll\api\dto\LancamentoResponseDTO.class
+med\voll\api\repository\LancamentoRepository.class
+med\voll\api\Lancamento\Lancamento.class
+med\voll\api\dto\PessoaResponseDTO.class
+med\voll\api\controller\LancamentoController.class
+med\voll\api\ApiApplication.class
+med\voll\api\dto\LancamentoRequestDTO.class
+med\voll\api\pessoa\Pessoa.class
+med\voll\api\dto\PessoaRequestDTO.class
