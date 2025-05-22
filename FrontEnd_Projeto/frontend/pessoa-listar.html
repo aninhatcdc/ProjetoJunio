@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Pessoas</title>
+</head>
+<body>
+    <h1>Listar Pessoas</h1>
+    <ul id="listaPessoas"></ul>
+  
+    <script>
+      async function carregarPessoas() {
+        const response = await fetch('http://localhost:8080/pessoas');
+        const pessoas = await response.json();
+  
+        const lista = document.getElementById('listaPessoas');
+        lista.innerHTML = '';
+  
+        pessoas.forEach(p => {
+          const item = document.createElement('li');
+          item.textContent = `${p.id} - ${p.nome} - ${p.email} - ${p.tipo}`;
+          lista.appendChild(item);
+        });
+      }
+  
+      carregarPessoas();
+    </script>
+</body>
+</html>

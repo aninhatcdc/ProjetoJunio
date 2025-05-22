@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Lançamento</title>
+</head>
+<body>
+    <h1>Cadastrar Lançamento</h1>
+
+    <form id="formLancamento">
+        <input type="text" id="descricao" placeholder="Descrição" required><br><br>
+        <input type="number" id="valor" placeholder="Valor" required><br><br>
+        <input type="text" id="tipo" placeholder="Tipo (CREDITO ou DEBITO)" required><br><br>
+        <input type="date" id="data" placeholder="Data" required><br><br>
+        <input type="number" id="pessoaId" placeholder="ID da Pessoa" required><br><br>
+        <button type="submit">Cadastrar</button>
+      </form>
+      
+
+  <p id="mensagem"></p>
+
+  <script>
+    const form = document.getElementById('formLancamento');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        descricao: document.getElementById('descricao').value,
+        valor: parseFloat(document.getElementById('valor').value),
+        tipo: document.getElementById('tipo').value,
+        data: document.getElementById('data').value,
+        pessoaId: parseInt(document.getElementById('pessoaId').value)
+      };
+
+      const response = await fetch('http://localhost:8080/lancamentos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const mensagem = document.getElementById('mensagem');
+
+      if (response.ok) {
+        mensagem.textContent = 'Lançamento cadastrado com sucesso!';
+        form.reset();
+      } else {
+        mensagem.textContent = 'Erro ao cadastrar lançamento.';
+      }
+    });
+  </script>
+</body>
+</html>

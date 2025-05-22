@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Lançamentos</title>
+</head>
+<body>
+    <h1>Listar Lançamentos</h1>
+  <ul id="listaLancamentos"></ul>
+
+  <script>
+    async function carregarLancamentos() {
+      const response = await fetch('http://localhost:8080/lancamentos');
+      const lancamentos = await response.json();
+
+      const lista = document.getElementById('listaLancamentos');
+      lista.innerHTML = '';
+
+      lancamentos.forEach(l => {
+        const item = document.createElement('li');
+        item.textContent = `${l.id} - ${l.descricao} - ${l.valor} - ${l.tipo} - ${l.data} - PessoaID: ${l.pessoaId}`;
+        lista.appendChild(item);
+      });
+    }
+
+    carregarLancamentos();
+  </script>
+</body>
+</html>
